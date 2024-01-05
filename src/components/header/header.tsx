@@ -52,7 +52,7 @@ export default function Header() {
   return (
     <div className=" items-center justify-center">
       <Card className="mb-9 shadow-xl">
-        <CardTitle className="flex justify-center my-5">GitFinder</CardTitle>
+        <CardTitle className="flex justify-center my-5">GitFind</CardTitle>
         <CardContent className="min-h-16 flex items-center justify-center">
           <form
             className="flex items-center justify-center"
@@ -80,9 +80,9 @@ export default function Header() {
 
             <InfoUser
               html_url={data?.html_url || "site.com"}
-              name={data?.name || "Git Finder"}
+              name={data?.name || "Git Find"}
               company={data?.company || ""}
-              blog={data?.blog || "blog.gitfinder.com"}
+              blog={data?.blog || "blog.gitfind.com"}
               location={data?.location || "Brusque-SC"}
               public_repos={data?.public_repos || 2}
               followers={data?.followers || 50}
