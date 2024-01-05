@@ -2,12 +2,9 @@ import Header from "./components/header/header";
 
 function App() {
   return (
-    <>
-      <div>
-        <h1 className="text-green-500">Teste</h1>
-        <Header />
-      </div>
-    </>
+    <div className="flex justify-center items-center w-screen h-screen">
+      <Header />
+    </div>
   );
 }
 
