@@ -7,6 +7,13 @@ import axios from "axios";
 import { useState } from "react";
 import { toast } from "../ui/use-toast";
 import { Card, CardContent, CardTitle } from "../ui/card";
+import { FaUsers } from "react-icons/fa";
+import { GiStarsStack } from "react-icons/gi";
+import { Label } from "../ui/label";
+import { IoIosGitBranch } from "react-icons/io";
+import { FaGlobeAmericas } from "react-icons/fa";
+import { BsCalendar2Date } from "react-icons/bs";
+import { FaUserLarge } from "react-icons/fa6";
 
 const find = z.object({
   username: z.string(),
@@ -68,11 +75,72 @@ export default function Header() {
               <img className="rounded-full w-28" src={data?.avatar_url} />
             </div>
             <div className="ml-12 flex justify-center items-center">
-              <div>
-                <h1>{data?.name}</h1>
-                <label>{data?.location}</label>
+              <div className="space-y-1">
+                <div className="flex space-x-1  items-center">
+                  <FaUserLarge />
+                  <Label>{data?.name}</Label>
+                </div>
+
+                <div className="flex space-x-1  items-center">
+                  <FaGlobeAmericas />
+                  <Label>{data?.location}</Label>
+                </div>
+
+                <div className="flex space-x-1  items-center">
+                  <BsCalendar2Date />
+                  <Label>{data?.created_at}</Label>
+                </div>
               </div>
             </div>
+          </div>
+          <div className="flex space-x-3">
+            <Card className="shadow-md">
+              <CardTitle className="flex items-center justify-center mt-2">
+                Followers
+              </CardTitle>
+              <CardContent className="justify-center items-center">
+                <div className="flex justify-center">
+                  <FaUsers size={40} />
+                </div>
+                <div>
+                  <Label className="flex justify-center min-w-32">
+                    {data?.followers}
+                  </Label>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-md">
+              <CardTitle className="flex items-center justify-center mt-2">
+                Stars
+              </CardTitle>
+              <CardContent className="justify-center items-center">
+                <div className="flex justify-center">
+                  <GiStarsStack size={40} />
+                </div>
+                <div>
+                  <Label className="flex justify-center min-w-32">
+                    {data?.following}
+                  </Label>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-md">
+              <CardTitle className="flex items-center justify-center mt-2">
+                Public Repo
+              </CardTitle>
+              <CardContent className="justify-center items-center">
+                <div className="flex justify-center items-center">
+                  <IoIosGitBranch size={40} />
+                </div>
+                <div>
+                  <Label className="flex justify-center min-w-32">
+                    {data?.public_repos}
+                  </Label>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </CardContent>
       </Card>
