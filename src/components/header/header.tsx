@@ -51,14 +51,13 @@ export default function Header() {
   }
 
   return (
-    <div className="flex items-center justify-center h-screen w-screen">
-      <div className="items-center justify-center space-y-6 max-w-2xl">
+    <div className="flex items-center justify-center  md:h-screen">
+      <div className="space-y-4">
         <div className="flex justify-between">
-          <h1 className="flex justify-center my-5 text-lg">GitFind</h1>
-          <div className="flex justify-center items-center">
-            <ModeToggle />
-          </div>
+          <h1 className="flex justify-center font-bold text-lg">GitFind</h1>
+          <ModeToggle />
         </div>
+
         <Card className="shadow-xl min-h-16 items-center justify-center">
           <div className="flex items-center justify-center mt-6">
             <CardContent className="flex items-center justify-center">
