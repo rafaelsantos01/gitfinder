@@ -1,10 +1,13 @@
+import { ThemeProvider } from "./components/darkMode/theme-provider";
 import Header from "./components/header/header";
 
 function App() {
   return (
-    <div className="flex justify-center items-center w-screen h-screen">
-      <Header />
-    </div>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <div className=" justify-center items-center">
+        <Header />
+      </div>
+    </ThemeProvider>
   );
 }
 
