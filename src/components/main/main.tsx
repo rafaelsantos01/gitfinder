@@ -111,23 +111,7 @@ export default function Header() {
               </div>
             </div>
 
-            <div className="md:flex md:space-x-3 space-y-2">
-              <Card className="shadow-md  max-w-72">
-                <CardTitle className="flex items-center justify-center mt-2">
-                  Followers
-                </CardTitle>
-                <CardContent className="justify-center items-center space-y-1">
-                  <div className="flex justify-center">
-                    <FaUsers size={40} />
-                  </div>
-                  <div>
-                    <Label className="flex justify-center min-w-32">
-                      {data?.followers}
-                    </Label>
-                  </div>
-                </CardContent>
-              </Card>
-
+            <div className="md:flex md:space-x-3 md:space-y-0 space-y-2">
               <Card className="shadow-md  max-w-72">
                 <CardTitle className="flex items-center justify-center mt-2">
                   Stars
@@ -146,14 +130,30 @@ export default function Header() {
 
               <Card className="shadow-md  max-w-72">
                 <CardTitle className="flex items-center justify-center mt-2">
+                  Followers
+                </CardTitle>
+                <CardContent className="justify-center items-center space-y-1">
+                  <div className="flex justify-center">
+                    <FaUsers size={40} />
+                  </div>
+                  <div>
+                    <Label className="flex justify-center min-w-32">
+                      {data?.followers}
+                    </Label>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="shadow-md  max-w-72">
+                <CardTitle className="flex items-center justify-center mt-2">
                   Public Repo
                 </CardTitle>
                 <CardContent className="justify-center items-center space-y-1">
-                  <div className="flex justify-center items-center">
+                  <div className="flex justify-center">
                     <IoIosGitBranch size={40} />
                   </div>
                   <div>
-                    <Label className="flex justify-center items-center min-w-32">
+                    <Label className="flex justify-center min-w-32">
                       {data?.public_repos}
                     </Label>
                   </div>
