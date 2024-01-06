@@ -14,6 +14,7 @@ import { IoIosGitBranch } from "react-icons/io";
 import img from "./../../assets/9919.png";
 
 import InfoUser from "./info";
+import { ModeToggle } from "../darkMode/mode-toggle";
 
 const find = z.object({
   username: z.string(),
@@ -50,104 +51,116 @@ export default function Header() {
   }
 
   return (
-    <div className=" items-center justify-center">
-      <Card className="mb-9 shadow-xl">
-        <CardTitle className="flex justify-center my-5">GitFind</CardTitle>
-        <CardContent className="min-h-16 flex items-center justify-center">
-          <form
-            className="flex items-center justify-center"
-            onSubmit={handleSubmit(handleFindUsername)}
-          >
-            <Input
-              placeholder="Nome do usuário"
-              className="w-64 "
-              {...register("username")}
-            />
-            <Button type="submit">Buscar</Button>
-          </form>
-        </CardContent>
-      </Card>
+    <div className="flex items-center justify-center  md:h-screen">
+      <div className="space-y-4">
+        <div className="flex justify-between">
+          <h1 className="flex justify-center font-bold text-lg">GitFind</h1>
+          <ModeToggle />
+        </div>
 
-      <Card className="shadow-xl">
-        <CardContent className="mt-10">
-          <div className="flex">
-            <div>
-              <img
-                className="rounded-full w-36 shadow-2xl border-2 border-slate-700"
-                src={data?.avatar_url || img}
+        <Card className="shadow-xl min-h-16 items-center justify-center">
+          <div className="flex items-center justify-center mt-6">
+            <CardContent className="flex items-center justify-center">
+              <form
+                className="flex items-center justify-center"
+                onSubmit={handleSubmit(handleFindUsername)}
+              >
+                <div className="relative">
+                  <Input
+                    placeholder="Search GitHub username... "
+                    className="w-72 h-12"
+                    {...register("username")}
+                  />
+                  <Button
+                    type="submit"
+                    className="absolute rounded-lg right-0 top-1/2 transform -translate-y-1/2 cursor-pointer px-3 mr-1"
+                  >
+                    Buscar
+                  </Button>
+                </div>
+              </form>
+            </CardContent>
+          </div>
+        </Card>
+
+        <Card className="shadow-xl">
+          <CardContent className="mt-10 space-y-3">
+            <div className="md:flex">
+              <div className="flex items-center justify-center mb-2">
+                <img
+                  className="rounded-full w-36 shadow-2xl border-2 border-slate-700"
+                  src={data?.avatar_url || img}
+                />
+              </div>
+
+              <InfoUser
+                html_url={data?.html_url || "site.com"}
+                name={data?.name || "Git Find"}
+                company={data?.company || ""}
+                blog={data?.blog || "blog.gitfind.com"}
+                location={data?.location || "Brusque-SC"}
+                public_repos={data?.public_repos || 2}
+                followers={data?.followers || 50}
+                created_at={data?.created_at || "2024-01-01"}
               />
             </div>
 
-            <InfoUser
-              html_url={data?.html_url || "site.com"}
-              name={data?.name || "Git Find"}
-              company={data?.company || ""}
-              blog={data?.blog || "blog.gitfind.com"}
-              location={data?.location || "Brusque-SC"}
-              public_repos={data?.public_repos || 2}
-              followers={data?.followers || 50}
-              created_at={data?.created_at || "2024-01-01"}
-            />
-          </div>
+            <div className="flex justify-center items-center md:max-w-lg max-w-xs">
+              <p className="text-center">{data?.bio}</p>
+            </div>
 
-          <div className="flex  justify-center items-center my-6">
-            <Label>{data?.bio}</Label>
-          </div>
+            <div className="md:flex md:space-x-3 space-y-2">
+              <Card className="shadow-md  max-w-72">
+                <CardTitle className="flex items-center justify-center mt-2">
+                  Followers
+                </CardTitle>
+                <CardContent className="justify-center items-center space-y-1">
+                  <div className="flex justify-center">
+                    <FaUsers size={40} />
+                  </div>
+                  <div>
+                    <Label className="flex justify-center min-w-32">
+                      {data?.followers}
+                    </Label>
+                  </div>
+                </CardContent>
+              </Card>
 
-          <div className="flex space-x-3">
-            <Card className="shadow-md">
-              <CardTitle className="flex items-center justify-center mt-2">
-                Followers
-              </CardTitle>
-              <CardContent className="justify-center items-center">
-                <div className="flex justify-center">
-                  <FaUsers size={40} />
-                </div>
-                <div>
-                  <Label className="flex justify-center min-w-32">
-                    {data?.followers}
-                  </Label>
-                </div>
-              </CardContent>
-            </Card>
+              <Card className="shadow-md  max-w-72">
+                <CardTitle className="flex items-center justify-center mt-2">
+                  Stars
+                </CardTitle>
+                <CardContent className="justify-center items-center space-y-1">
+                  <div className="flex justify-center">
+                    <GiStarsStack size={40} />
+                  </div>
+                  <div className="">
+                    <Label className="flex justify-center min-w-32">
+                      {data?.following}
+                    </Label>
+                  </div>
+                </CardContent>
+              </Card>
 
-            <Card className="shadow-md">
-              <CardTitle className="flex items-center justify-center mt-2">
-                Stars
-              </CardTitle>
-              <CardContent className="justify-center items-center">
-                <div className="flex justify-center">
-                  <GiStarsStack size={40} />
-                </div>
-                <div>
-                  <Label className="flex justify-center min-w-32">
-                    {data?.following}
-                  </Label>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-md">
-              <CardTitle className="flex items-center justify-center mt-2">
-                Public Repo
-              </CardTitle>
-              <CardContent className="justify-center items-center">
-                <div className="flex justify-center items-center">
-                  <IoIosGitBranch size={40} />
-                </div>
-                <div>
-                  <Label className="flex justify-center min-w-32">
-                    {data?.public_repos}
-                  </Label>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </CardContent>
-        <div className="flex justify-center mb-10">
-          <Button>Portifolio</Button>
-        </div>
-      </Card>
+              <Card className="shadow-md  max-w-72">
+                <CardTitle className="flex items-center justify-center mt-2">
+                  Public Repo
+                </CardTitle>
+                <CardContent className="justify-center items-center space-y-1">
+                  <div className="flex justify-center items-center">
+                    <IoIosGitBranch size={40} />
+                  </div>
+                  <div>
+                    <Label className="flex justify-center items-center min-w-32">
+                      {data?.public_repos}
+                    </Label>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
