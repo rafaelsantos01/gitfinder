@@ -1,5 +1,5 @@
 import { ThemeProvider } from "./components/darkMode/theme-provider";
-import Header from "./components/header/header";
+import Header from "./components/main/main";
 
 function App() {
   return (

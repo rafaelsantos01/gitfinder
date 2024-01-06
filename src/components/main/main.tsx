@@ -160,6 +160,16 @@ export default function Header() {
                 </CardContent>
               </Card>
             </div>
+            <div className="flex justify-center items-center">
+              <Label>
+                <a
+                  href="https://portifolio-react-rose-tau.vercel.app"
+                  target="_blank"
+                >
+                  Copyright © 2024 de Rafael Pereira Dos Santos
+                </a>
+              </Label>
+            </div>
           </CardContent>
         </Card>
       </div>

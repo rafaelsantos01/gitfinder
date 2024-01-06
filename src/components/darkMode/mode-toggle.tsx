@@ -11,10 +11,10 @@ export function ModeToggle() {
 
   async function changeTheme() {
     if (state === 1) {
-      setTheme("light");
+      setTheme("dark");
       setState(2);
     } else {
-      setTheme("dark");
+      setTheme("light");
       setState(1);
     }
   }
