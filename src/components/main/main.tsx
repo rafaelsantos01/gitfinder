@@ -51,7 +51,7 @@ export default function Header() {
   }
 
   return (
-    <div className="flex items-center justify-center md:h-screen">
+    <div className="flex items-center justify-center md:h-screen md:mt-0 mt-4 md:mb-0 mb-4">
       <div className="space-y-4">
         <div className="flex justify-between">
           <h1 className="flex justify-center font-bold text-lg">GitFind</h1>
@@ -105,29 +105,13 @@ export default function Header() {
               />
             </div>
 
-            <div className="flex items-center justify-center md:max-w-2xl max-w-72">
+            <div className="flex items-center justify-center md:max-w-xl max-w-72">
               <div className="flex justify-center items-center">
                 <p className="text-center">{data?.bio}</p>
               </div>
             </div>
 
-            <div className="md:flex md:space-x-3 space-y-2">
-              <Card className="shadow-md  max-w-72">
-                <CardTitle className="flex items-center justify-center mt-2">
-                  Followers
-                </CardTitle>
-                <CardContent className="justify-center items-center space-y-1">
-                  <div className="flex justify-center">
-                    <FaUsers size={40} />
-                  </div>
-                  <div>
-                    <Label className="flex justify-center min-w-32">
-                      {data?.followers}
-                    </Label>
-                  </div>
-                </CardContent>
-              </Card>
-
+            <div className="md:flex md:space-x-3 md:space-y-0 space-y-2">
               <Card className="shadow-md  max-w-72">
                 <CardTitle className="flex items-center justify-center mt-2">
                   Stars
@@ -146,14 +130,30 @@ export default function Header() {
 
               <Card className="shadow-md  max-w-72">
                 <CardTitle className="flex items-center justify-center mt-2">
+                  Followers
+                </CardTitle>
+                <CardContent className="justify-center items-center space-y-1">
+                  <div className="flex justify-center">
+                    <FaUsers size={40} />
+                  </div>
+                  <div>
+                    <Label className="flex justify-center min-w-32">
+                      {data?.followers}
+                    </Label>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="shadow-md  max-w-72">
+                <CardTitle className="flex items-center justify-center mt-2">
                   Public Repo
                 </CardTitle>
                 <CardContent className="justify-center items-center space-y-1">
-                  <div className="flex justify-center items-center">
+                  <div className="flex justify-center">
                     <IoIosGitBranch size={40} />
                   </div>
                   <div>
-                    <Label className="flex justify-center items-center min-w-32">
+                    <Label className="flex justify-center min-w-32">
                       {data?.public_repos}
                     </Label>
                   </div>
