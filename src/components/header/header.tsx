@@ -51,7 +51,7 @@ export default function Header() {
   }
 
   return (
-    <div className="flex items-center justify-center  md:h-screen">
+    <div className="flex items-center justify-center md:h-screen">
       <div className="space-y-4">
         <div className="flex justify-between">
           <h1 className="flex justify-center font-bold text-lg">GitFind</h1>
