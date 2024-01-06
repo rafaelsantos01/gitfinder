@@ -83,7 +83,7 @@ export default function Header() {
           </div>
         </Card>
 
-        <Card className="shadow-xl">
+        <Card className="shadow-xl items-center justify-center flex">
           <CardContent className="mt-10 space-y-3">
             <div className="md:flex">
               <div className="flex items-center justify-center mb-2">
@@ -105,8 +105,10 @@ export default function Header() {
               />
             </div>
 
-            <div className="flex justify-center items-center md:max-w-lg max-w-xs">
-              <p className="text-center">{data?.bio}</p>
+            <div className="flex items-center justify-center md:max-w-2xl max-w-72">
+              <div className="flex justify-center items-center">
+                <p className="text-center">{data?.bio}</p>
+              </div>
             </div>
 
             <div className="md:flex md:space-x-3 space-y-2">
