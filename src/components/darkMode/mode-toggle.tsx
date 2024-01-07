@@ -7,15 +7,15 @@ import { useState } from "react";
 
 export function ModeToggle() {
   const { setTheme } = useTheme();
-  const [state, setState] = useState(1);
+  const [state, setState] = useState(false);
 
   async function changeTheme() {
-    if (state === 1) {
+    if (state) {
       setTheme("dark");
-      setState(2);
+      setState(false);
     } else {
       setTheme("light");
-      setState(1);
+      setState(true);
     }
   }
 
