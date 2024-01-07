@@ -39,7 +39,7 @@ export default function InfoUser(data: IRequest) {
             <TbWorldWww />
             <Label>
               <a href={data.blog} target="_blank">
-                Portfolio
+                Portfólio
               </a>
             </Label>
           </div>
