@@ -54,7 +54,7 @@ export default function Header() {
   return (
     <div className="flex items-center justify-center md:h-screen md:mt-0 mt-4 md:mb-0 mb-4">
       <div className="space-y-4">
-        <div className="flex justify-between">
+        <div className="flex items-center justify-between">
           <h1 className="flex justify-center font-bold text-lg">GitFind</h1>
           <ModeToggle />
         </div>
