@@ -22,7 +22,7 @@ const find = z.object({
 
 type FindUsername = z.infer<typeof find>;
 
-const baseURL = "https://api.github.com/users";
+const baseURL = "https://api.github.com/users/";
 
 export default function Header() {
   const [data, setData] = useState<UserGitHub>();
@@ -31,12 +31,13 @@ export default function Header() {
   });
 
   async function handleFindUsername({ username }: FindUsername) {
-    console.log(username);
     await axios
-      .get(`${baseURL}/${username}`)
+      .get(`${baseURL}${username.trim()}`)
       .then((response) => {
-        setData(response.data);
-        console.log(response.data);
+        setData({
+          ...response.data,
+          created_at: new Date(response.data.created_at),
+        });
         toast({
           description: "Usuário encontrado",
           variant: "successful",
@@ -101,7 +102,13 @@ export default function Header() {
                 location={data?.location || "Brusque-SC"}
                 public_repos={data?.public_repos || 2}
                 followers={data?.followers || 50}
-                created_at={data?.created_at || "2024-01-01"}
+                created_at={
+                  new Intl.DateTimeFormat("en-US", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric",
+                  }).format(data?.created_at) || "2024-01-01"
+                }
               />
             </div>
 
@@ -192,6 +199,6 @@ interface UserGitHub {
   public_gists: number;
   followers: number;
   following: number;
-  created_at: string;
+  created_at: Date;
   updated_at: string;
 }
