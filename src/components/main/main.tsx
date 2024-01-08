@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "../ui/use-toast";
-import { Card, CardContent, CardTitle } from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 import { FaUsers } from "react-icons/fa";
 import { GiStarsStack } from "react-icons/gi";
 import { Label } from "../ui/label";
@@ -15,6 +15,7 @@ import img from "./../../assets/9919.png";
 
 import InfoUser from "./info";
 import { ModeToggle } from "../darkMode/mode-toggle";
+import CardStats from "../cardStats/cardStats";
 
 const find = z.object({
   username: z.string(),
@@ -25,7 +26,7 @@ type FindUsername = z.infer<typeof find>;
 const baseURL = "https://api.github.com/users/";
 
 export default function Header() {
-  const [data, setData] = useState<UserGitHub>();
+  const [data, setData] = useState<UserGitHub>(mock);
   const { handleSubmit, register } = useForm<FindUsername>({
     resolver: zodResolver(find),
   });
@@ -95,13 +96,13 @@ export default function Header() {
               </div>
 
               <InfoUser
-                html_url={data?.html_url || "site.com"}
-                name={data?.name || "Git Find"}
-                company={data?.company || ""}
-                blog={data?.blog || "blog.gitfind.com"}
-                location={data?.location || "Brusque-SC"}
-                public_repos={data?.public_repos || 2}
-                followers={data?.followers || 50}
+                html_url={data?.html_url}
+                name={data?.name}
+                company={data?.company}
+                blog={data?.blog}
+                location={data?.location}
+                public_repos={data?.public_repos}
+                followers={data?.followers}
                 created_at={
                   new Intl.DateTimeFormat("en-US", {
                     day: "2-digit",
@@ -119,53 +120,22 @@ export default function Header() {
             </div>
 
             <div className="md:flex md:space-x-3 md:space-y-0 space-y-2">
-              <Card className="shadow-md  max-w-72">
-                <CardTitle className="flex items-center justify-center mt-2">
-                  Stars
-                </CardTitle>
-                <CardContent className="justify-center items-center space-y-1">
-                  <div className="flex justify-center">
-                    <GiStarsStack size={40} />
-                  </div>
-                  <div className="">
-                    <Label className="flex justify-center min-w-32">
-                      {data?.following}
-                    </Label>
-                  </div>
-                </CardContent>
-              </Card>
+              <CardStats
+                name={"Stars"}
+                statistics={data.following | 0}
+                icon={<GiStarsStack size={40} />}
+              />
 
-              <Card className="shadow-md  max-w-72">
-                <CardTitle className="flex items-center justify-center mt-2">
-                  Followers
-                </CardTitle>
-                <CardContent className="justify-center items-center space-y-1">
-                  <div className="flex justify-center">
-                    <FaUsers size={40} />
-                  </div>
-                  <div>
-                    <Label className="flex justify-center min-w-32">
-                      {data?.followers}
-                    </Label>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="shadow-md  max-w-72">
-                <CardTitle className="flex items-center justify-center mt-2">
-                  Public Repo
-                </CardTitle>
-                <CardContent className="justify-center items-center space-y-1">
-                  <div className="flex justify-center">
-                    <IoIosGitBranch size={40} />
-                  </div>
-                  <div>
-                    <Label className="flex justify-center min-w-32">
-                      {data?.public_repos}
-                    </Label>
-                  </div>
-                </CardContent>
-              </Card>
+              <CardStats
+                name={"Followers"}
+                statistics={data.followers | 0}
+                icon={<FaUsers size={40} />}
+              />
+              <CardStats
+                name={"Public Repo"}
+                statistics={data.public_repos | 0}
+                icon={<IoIosGitBranch size={40} />}
+              />
             </div>
             <div className="flex justify-center items-center">
               <Label>
@@ -183,6 +153,25 @@ export default function Header() {
     </div>
   );
 }
+
+const mock: UserGitHub = {
+  login: "",
+  avatar_url: "",
+  html_url: "https://github.com/rafaelsantos01",
+  name: "Git Find",
+  company: "N/A",
+  blog: "https://github.com/rafaelsantos01",
+  location: "Brusque-SC",
+  email: "",
+  bio: "",
+  twitter_username: "",
+  public_repos: 0,
+  public_gists: 0,
+  followers: 0,
+  following: 0,
+  created_at: new Date(),
+  updated_at: "",
+};
 
 interface UserGitHub {
   login: string;
